@@ -1,0 +1,5 @@
+<%= form_for @measurement, :url => measurements_path, :html => { :multipart => true } do |form| %>
+  <%= form.file_field :photo %>
+  <br>
+  <%= form.submit %>
+<% end %>
