@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170703170621) do
+ActiveRecord::Schema.define(version: 20170705215423) do
 
   create_table "circles", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -20,6 +20,16 @@ ActiveRecord::Schema.define(version: 20170703170621) do
     t.integer "center_x"
     t.integer "radius"
     t.index ["measurement_id"], name: "index_circles_on_measurement_id"
+  end
+
+  create_table "detectors", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "name"
+    t.integer "param1"
+    t.integer "param2"
+    t.integer "dp"
+    t.integer "min_dist"
   end
 
   create_table "measurements", force: :cascade do |t|
@@ -33,6 +43,7 @@ ActiveRecord::Schema.define(version: 20170703170621) do
     t.string "processed_photo_content_type"
     t.integer "processed_photo_file_size"
     t.datetime "processed_photo_updated_at"
+    t.boolean "processed", default: false
   end
 
 end

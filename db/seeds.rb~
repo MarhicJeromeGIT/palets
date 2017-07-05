@@ -15,6 +15,7 @@ Detector.create(
   param2: 64
 )
 
+
 Detector.create(
   name: 'palets',
   dp: 1, 

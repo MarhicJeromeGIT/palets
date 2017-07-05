@@ -2,6 +2,10 @@
 <h1> MEASUREMENTS </h1>
 
 <% @measurements.each do |measurement| %>
-  <%= measurement.id %>
-  <%= image_tag measurement.processed_photo %>
+  <div class="measurement">
+    <%= measurement.id %>
+    <%= measurement.created_at.strftime("%m/%d/%Y %Hh-%M") %>
+    <%= image_tag measurement.photo %>
+    <%= image_tag measurement.processed_photo %>
+  </div>
 <% end %>

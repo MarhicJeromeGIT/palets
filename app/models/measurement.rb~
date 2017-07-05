@@ -9,20 +9,22 @@ class Measurement < ApplicationRecord
   validates_attachment_content_type :processed_photo, content_type: /\Aimage/
 
   # Paperclip saves the attachments to disk in an after_save callback
-  after_save :create_circles
+  after_photo_post_process :create_circles
   
   def create_circles
-    return if circles.any?
+    detector = Detector.first
+    photo_path = photo.queued_for_write[:original]&.path || photo.path
+    raise 'putain paperclip' unless photo_path
     
-    circle_list = Detector.find_circles photo.path, dp: 1, min_dist: 70, param1: 168, param2: 64
+    circles.delete_all
+    circle_list = detector.find_circles photo_path
     circle_list.each do |circle|
       circles << Circle.create(circle)
     end
     
-    path = Detector.draw_circles photo.path, circle_list
+    path = detector.draw_circles photo_path, circle_list
     self.processed_photo = File.open(path)
-    self.save
-    debugger
+    self.processed = true
   end
 
   # TEMP and RANDOM
@@ -38,6 +40,12 @@ class Measurement < ApplicationRecord
         radius = 1 + rand(width*0.1)
         circle_list << { center_x: center_x, center_y: center_y, radius: radius }
       end
+    end
+  end
+  
+  def self.reprocess_all
+    Measurement.all.each do |measurement|
+      measurement.create_circles
     end
   end
 end

@@ -19,14 +19,11 @@ class MeasurementsController < ApplicationController
     # TODO    
     @measurement.save
     
-    if request.format.html?
-      redirect_to @measurement
-    else
-      data = {
-        circles: @measurement.circles.to_json      
-      }
-      render status: :ok, json: @measurement
-    end
+   data = {
+     circles: @measurement.circles.to_json      
+   }
+   render status: :ok, json: @measurement
+
   end
   
   private

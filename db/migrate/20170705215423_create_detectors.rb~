@@ -1,0 +1,13 @@
+class CreateDetectors < ActiveRecord::Migration[5.1]
+  def change
+    create_table :detectors do |t|
+
+      t.timestamps
+      
+      t.integer :param1
+      t.integer :param2
+      t.integer :dp
+      t.integer :min_dist
+    end
+  end
+end

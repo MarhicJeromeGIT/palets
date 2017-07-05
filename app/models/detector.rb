@@ -1,7 +1,7 @@
 require 'gtk2'
 require 'opencv'
 
-module Detector
+class Detector < ApplicationRecord
 	
 	#method (Integer) — Detection method to use. Currently, the only implemented method is CV_HOUGH_GRADIENT.
 	#dp (Number) — Inverse ratio of the accumulator resolution to the image resolution. For example, if dp=1, the accumulator has the same resolution as the input image. If dp=2, the accumulator has half as big width and height.
@@ -10,7 +10,7 @@ module Detector
 	#param2 (Number) — Second method-specific parameter. In case of CV_HOUGH_GRADIENT, it is the accumulator threshold for the circle centers at the detection stage. The smaller it is, the more false circles may be detected. Circles, corresponding to the larger accumulator values, will be returned first.
 	
 	
-	def self.find_circles(image_path, dp: 1, min_dist: 48, param1: 241, param2: 1)
+	def find_circles(image_path)
 	
 	  cv_image = OpenCV::IplImage::load image_path
 	  cv_gray = cv_image.BGR2GRAY
@@ -21,7 +21,7 @@ module Detector
 	  end
 	end
 	
-	def self.draw_circles(image_path, circles)
+	def draw_circles(image_path, circles)
 	
 	  cv_image = OpenCV::IplImage::load image_path
 	  cv_result = cv_image.clone
