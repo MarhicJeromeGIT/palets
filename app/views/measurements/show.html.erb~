@@ -1,4 +1,5 @@
   
 <h1> MEASUREMENT </h1>
 <%= "TIME: " + @measurement.created_at.strftime("%m/%d/%Y %Hh-%M") %>
+<br>
 <%= image_tag @measurement.photo %>

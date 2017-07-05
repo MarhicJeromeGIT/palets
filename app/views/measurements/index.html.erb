@@ -1,0 +1,7 @@
+  
+<h1> MEASUREMENTS </h1>
+
+<% @measurements.each do |measurement| %>
+  <%= measurement.id %>
+  <%= image_tag measurement.processed_photo %>
+<% end %>

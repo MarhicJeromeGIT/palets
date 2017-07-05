@@ -29,6 +29,10 @@ ActiveRecord::Schema.define(version: 20170703170621) do
     t.string "photo_content_type"
     t.integer "photo_file_size"
     t.datetime "photo_updated_at"
+    t.string "processed_photo_file_name"
+    t.string "processed_photo_content_type"
+    t.integer "processed_photo_file_size"
+    t.datetime "processed_photo_updated_at"
   end
 
 end

@@ -22,7 +22,7 @@ class MeasurementsController < ApplicationController
       data = {
         circles: @measurement.circles.to_json      
       }
-      render status: :ok, json: { measurement: @measurement }
+      render status: :ok, json: @measurement
     end
   end
   

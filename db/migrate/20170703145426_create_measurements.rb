@@ -5,7 +5,7 @@ class CreateMeasurements < ActiveRecord::Migration[5.1]
       t.timestamps
       
       t.attachment :photo
-      
+      t.attachment :processed_photo
     end
   end
 end

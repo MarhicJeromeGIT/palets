@@ -27,8 +27,8 @@ module Detector
 	  cv_result = cv_image.clone
 	  
 	  circles.each do |circle|
-	    center = OpenCV::CvPoint2D32f.new circle[:center_x], circle[:center_y]
-       cv_result.circle! center, circle[:radius], :color => OpenCV::CvColor::Red, :thickness => 2
+	    center = OpenCV::CvPoint2D32f.new circle.center_x, circle.center_y
+       cv_result.circle! center, circle.radius, :color => OpenCV::CvColor::Red, :thickness => 2
      end
   
 	  path = "tmp/processed_#{File.basename(image_path)}"
