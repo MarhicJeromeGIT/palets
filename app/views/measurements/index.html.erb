@@ -5,7 +5,7 @@
   <div class="measurement">
     <%= measurement.id %>
     <%= measurement.created_at.strftime("%m/%d/%Y %Hh-%M") %>
-    <%= image_tag measurement.photo %>
-    <%= image_tag measurement.processed_photo %>
+    <%= image_tag measurement.photo.url(:small) %>
+    <%= image_tag measurement.processed_photo.url(:small) %>
   </div>
 <% end %>

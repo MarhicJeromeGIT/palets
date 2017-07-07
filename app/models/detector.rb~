@@ -11,11 +11,12 @@ class Detector < ApplicationRecord
 	
 	
 	def find_circles(image_path)
-	
+	  puts "Detector::find_circles for #{image_path}..."
 	  cv_image = OpenCV::IplImage::load image_path
 	  cv_gray = cv_image.BGR2GRAY
+	  cv_gray = cv_gray.smooth OpenCV::CV_GAUSSIAN, 5, 5
 	  
-	  detect = cv_gray.hough_circles(OpenCV::CV_HOUGH_GRADIENT, dp, min_dist, param1, param2)
+	  detect = cv_gray.hough_circles(OpenCV::CV_HOUGH_GRADIENT, dp, min_dist, param1, param2, min_radius, max_radius)
 	  detect.map do |circle|
 	    { center_x: circle.center.x, center_y: circle.center.y, radius: circle.radius }
 	  end
@@ -31,7 +32,7 @@ class Detector < ApplicationRecord
        cv_result.circle! center, circle[:radius], :color => OpenCV::CvColor::Red, :thickness => 2
      end
   
-	  path = "tmp/processed_#{File.basename(image_path)}"
+	  path = "tmp/processed_#{File.basename(image_path)}.jpg"
 	  cv_result.save path
 	  path
 	end

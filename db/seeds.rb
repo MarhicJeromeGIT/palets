@@ -10,9 +10,11 @@
 Detector.create(
   name: 'default',
   dp: 1, 
-  min_dist: 70,
-  param1: 168,
-  param2: 64
+  min_dist: 5,
+  param1: 230,
+  param2: 24,
+  min_radius: 15,
+  max_radius: 37
 )
 
 Detector.create(
@@ -20,5 +22,7 @@ Detector.create(
   dp: 1, 
   min_dist: 80,
   param1: 200,
-  param2: 50
+  param2: 50,
+  min_radius: 0,
+  max_radius: 0
 )

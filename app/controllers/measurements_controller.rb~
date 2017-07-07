@@ -17,14 +17,15 @@ class MeasurementsController < ApplicationController
     @measurement = Measurement.new( measurement_params )
 
     # TODO    
-    @measurement.save
+    unless @measurement.save
+      render status: 500, json: @measurement.errors.full_messages
+    end
     
-
    data = {
      circles: @measurement.circles.to_json      
    }
-   render status: :ok, json: @measurement
-
+   render status: :ok, json: @measurement if @measurement.valid?
+   
   end
   
   private

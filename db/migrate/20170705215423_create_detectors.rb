@@ -8,6 +8,8 @@ class CreateDetectors < ActiveRecord::Migration[5.1]
       t.integer :param2
       t.integer :dp
       t.integer :min_dist
+      t.integer :min_radius
+      t.integer :max_radius
     end
   end
 end

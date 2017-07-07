@@ -3,7 +3,7 @@ class CreateDetectors < ActiveRecord::Migration[5.1]
     create_table :detectors do |t|
 
       t.timestamps
-      
+      t.string :name
       t.integer :param1
       t.integer :param2
       t.integer :dp

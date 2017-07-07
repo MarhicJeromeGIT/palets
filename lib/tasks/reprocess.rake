@@ -1,0 +1,6 @@
+namespace :reprocess do
+  desc "reprocess all"
+  task :all => :environment do
+    Measurement.reprocess_all
+  end
+end

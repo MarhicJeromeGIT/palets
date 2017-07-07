@@ -8,7 +8,7 @@ class MeasurementsController < ApplicationController
   end
   
   def index
-    @measurements = Measurement.all
+    @measurements = Measurement.all.order('created_at ASC')
   end
   
   # curl -F photo='./public/palets/ecu01.jpg' 192.168.0.12:8080/measurements
@@ -17,13 +17,15 @@ class MeasurementsController < ApplicationController
     @measurement = Measurement.new( measurement_params )
 
     # TODO    
-    @measurement.save
+    unless @measurement.save
+      render status: 500, json: @measurement.errors.full_messages
+    end
     
    data = {
      circles: @measurement.circles.to_json      
    }
-   render status: :ok, json: @measurement
-
+   render status: :ok, json: @measurement if @measurement.valid?
+   
   end
   
   private

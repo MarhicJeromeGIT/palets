@@ -3,3 +3,5 @@
 <%= "TIME: " + @measurement.created_at.strftime("%m/%d/%Y %Hh-%M") %>
 <br>
 <%= image_tag @measurement.photo %>
+<br>
+<%= image_tag @measurement.processed_photo.url(:resized) %>

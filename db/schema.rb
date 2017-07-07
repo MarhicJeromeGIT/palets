@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 20170705215423) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "circles", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -30,6 +33,8 @@ ActiveRecord::Schema.define(version: 20170705215423) do
     t.integer "param2"
     t.integer "dp"
     t.integer "min_dist"
+    t.integer "min_radius"
+    t.integer "max_radius"
   end
 
   create_table "measurements", force: :cascade do |t|
