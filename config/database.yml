@@ -9,9 +9,9 @@ default: &default
   timeout: 5000
   encoding: unicode
   pool: 5
-  host: 172.17.0.2
+  host: db
   username: postgres
-  password: postgrespwd
+  password: example
 
 development:
   <<: *default

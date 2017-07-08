@@ -1,4 +1,3 @@
-require 'gtk2'
 require 'opencv'
 
 class Detector < ApplicationRecord

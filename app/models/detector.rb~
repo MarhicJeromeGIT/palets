@@ -1,4 +1,3 @@
-require 'gtk2'
 require 'opencv'
 
 class Detector < ApplicationRecord
@@ -14,7 +13,7 @@ class Detector < ApplicationRecord
 	  puts "Detector::find_circles for #{image_path}..."
 	  cv_image = OpenCV::IplImage::load image_path
 	  cv_gray = cv_image.BGR2GRAY
-	  cv_gray = cv_gray.smooth OpenCV::CV_GAUSSIAN, 5, 5
+	  cv_gray = cv_gray.smooth OpenCV::CV_GAUSSIAN, 7, 7
 	  
 	  detect = cv_gray.hough_circles(OpenCV::CV_HOUGH_GRADIENT, dp, min_dist, param1, param2, min_radius, max_radius)
 	  detect.map do |circle|

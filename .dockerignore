@@ -1,0 +1,17 @@
+.DS_Store
+.bowerrc
+.byebug_history
+.dockerignore
+.env
+.git
+.gitignore
+.idea
+.vscode
+Guardfile
+README.rdoc
+docker-compose.yml
+docker-compose.override.yml
+gateway.conf
+log/*
+tmp/*
+public/uploads/*

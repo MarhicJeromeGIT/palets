@@ -1,0 +1,21 @@
+version: '3.1'
+services:
+  db:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: example
+    ports:
+      - "5432:5432"
+  app:
+    image: marhicjerome/testapp:latest
+    ports:
+      - "3001:3000"
+  visualizer:
+     image: dockersamples/visualizer:stable
+     ports:
+       - "8080:8080"
+     volumes:
+       - "/var/run/docker.sock:/var/run/docker.sock"
+     deploy:
+       placement:
+         constraints: [node.role == manager]
